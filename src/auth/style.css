@@ -1,0 +1,58 @@
+.register_heading {
+  margin-top: 200px;
+  margin-bottom: 30px;
+}
+
+.input_box {
+  height: 30px;
+  width: 300px;
+  border-radius: 20px;
+  font-size: 20px;
+  padding-left: 30px;
+}
+
+.submit_btn {
+  height: 50px;
+  width: 200px;
+  border-radius: 20px;
+  background-color: blue;
+  color: white;
+  border: none;
+  font-size: 20px;
+}
+
+.input_label {
+  width: 200px !important;
+  text-align: left;
+  font-size: 20px;
+}
+
+.form_row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link_login {
+  align-items: right;
+  font-size: 20px;
+}
+
+.details_box {
+  border: 1px solid black;
+  margin-bottom: 15px;
+  width: 300px;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.column_flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image_img {
+  width: 250px;
+  height: 250px;
+}
