@@ -4,19 +4,28 @@ import { toast } from "react-toastify";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 
-const START_MINUTES = "01";
-const START_SECOND = "00";
+const START_MINUTES = "00";
+const START_SECOND = "10";
 const START_DURATION = 10;
 
 function Home() {
   const navigate = useNavigate();
+
   const [flag, setFlag] = useState("");
   const [json, setJson] = useState([]);
   const [userData, setUserData] = useState([]);
   const [userPhoto, setUserPhoto] = useState([]);
   const [userComment, setUserComment] = useState([]);
+
+  const [resetTime, setResetTime] = useState(60000);
+
+  const [currentMinutes, setMinutes] = useState(START_MINUTES);
+  const [currentSeconds, setSeconds] = useState(START_SECOND);
+  const [isStop, setIsStop] = useState(false);
+  const [duration, setDuration] = useState(START_DURATION);
+  const [isRunning, setIsRunning] = useState(false);
 
   // const [timer, setTimer] = useState(0);
   // setTimeout(() => {
@@ -41,18 +50,6 @@ function Home() {
       });
   }, []);
 
-  const [currentMinutes, setMinutes] = useState(START_MINUTES);
-  const [currentSeconds, setSeconds] = useState(START_SECOND);
-  const [isStop, setIsStop] = useState(false);
-  const [duration, setDuration] = useState(START_DURATION);
-  const [isRunning, setIsRunning] = useState(false);
-
-  // const startHandler = () => {
-  //   setDuration(parseInt(START_SECOND, 10) + 60 * parseInt(START_MINUTES, 10));
-  // setMinutes(60 * 5);
-  // setSeconds(0);
-  //   setIsRunning(true);
-  // };
   useEffect(() => {
     setDuration(parseInt(START_SECOND, 10) + 60 * parseInt(START_MINUTES, 10));
     setIsRunning(true);
@@ -64,7 +61,62 @@ function Home() {
     setIsRunning(false);
     setIsStop(false);
     setDuration(START_DURATION);
+
+    switch (flag) {
+      case flag === "userData":
+        const time1 = setTimeout(() => {
+          logout();
+        }, 1000);
+        return () => {
+          clearInterval(time1);
+        };
+        break;
+
+      case flag === "userPhoto":
+        const time2 = setTimeout(() => {
+          logout();
+        }, 1000);
+        return () => {
+          clearInterval(time2);
+        };
+        break;
+
+      case flag === "userComment":
+        const time3 = setTimeout(() => {
+          logout();
+        }, 1000);
+        return () => {
+          clearInterval(time3);
+        };
+        break;
+      default:
+        return null;
+    }
+
+    // if (flag === "userData") {
+    //   const time1 = setTimeout(() => {
+    //     logout();
+    //   }, 1000);
+    //   return () => {
+    //     clearInterval(time1);
+    //   };
+    // } else if (flag === "userPhoto") {
+    //   const time2 = setTimeout(() => {
+    //     logout();
+    //   }, 1000);
+    //   return () => {
+    //     clearInterval(time2);
+    //   };
+    // } else if (flag === "userComment") {
+    //   const time3 = setTimeout(() => {
+    //     logout();
+    //   }, 1000);
+    //   return () => {
+    //     clearInterval(time3);
+    //   };
+    // }
   };
+  console.log("Flagssss", flag);
 
   useEffect(() => {
     if (isRunning === true) {
@@ -73,9 +125,11 @@ function Home() {
       const interval = setInterval(function () {
         if (--timer <= 0) {
           resetHandler();
+          logout();
         } else {
           minutes = parseInt(timer / 60, 10);
           seconds = parseInt(timer % 60, 10);
+          console.log("Timer is", timer);
 
           minutes = minutes < 10 ? "0" + minutes : minutes;
           seconds = seconds < 10 ? "0" + seconds : seconds;
@@ -83,16 +137,11 @@ function Home() {
           setMinutes(minutes);
           setSeconds(seconds);
         }
-        // logout();
       }, 1000);
       return () => {
         clearInterval(interval);
-        logout();
       };
     }
-    // if (isRunning === false) {
-    //   logout();
-    // }
   }, [isRunning]);
 
   const logout = () => {
@@ -127,16 +176,17 @@ function Home() {
         resetHandler();
       });
   };
+  console.log("Current Minutes ====> ", currentMinutes);
+  console.log("Current Seconds ", currentSeconds);
 
   return (
     <Container>
-      <div>Seesion Time 5 mins - </div>
       <div>
         <p>{JSON.stringify(json)}</p>
         <button onClick={logout}>Logout</button>
       </div>
       <div>
-        <h3>Result:</h3>
+        <h3>Time:</h3>
         <div className="time">
           {currentMinutes}
           <span className="mx-3">:</span>

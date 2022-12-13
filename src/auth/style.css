@@ -1,5 +1,5 @@
 .register_heading {
-  margin-top: 200px;
+  margin-top: 100px;
   margin-bottom: 30px;
 }
 
@@ -12,10 +12,11 @@
 }
 
 .submit_btn {
-  height: 50px;
-  width: 200px;
+  height: 37px;
+  width: 154px;
   border-radius: 20px;
   background-color: blue;
+  text-align: center;
   color: white;
   border: none;
   font-size: 20px;
@@ -35,7 +36,7 @@
 
 .link_login {
   align-items: right;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .details_box {
@@ -55,4 +56,13 @@
 .image_img {
   width: 250px;
   height: 250px;
+}
+
+.form_div {
+  border: 1px solid black;
+  width: 30%;
+  height: 500px;
+  margin-top: 200px;
+  text-align: center;
+  margin-left: 700px;
 }

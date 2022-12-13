@@ -40,53 +40,48 @@ const Login = () => {
 
   return (
     <div>
-      <h1 className="register_heading"> Login</h1>
-      <form onSubmit={formik.handleSubmit} noValidate>
-        <div className="form_row">
-          <label htmlFor="email" className="input_label">
-            Email
-          </label>
+      <div className="form_div">
+        <h1 className="register_heading"> Login</h1>
+        <form onSubmit={formik.handleSubmit}>
           <input
             type="email"
             name="email"
             id="email"
+            placeholder="Email"
             value={formik.email}
             onChange={formik.handleChange}
             className="input_box"
           />
+          <br />
           {formik.errors.email ? (
             <div style={{ color: "red", fontSize: "12px" }}>
               {formik.errors.email}
             </div>
           ) : null}
-        </div>
-        <br />
-
-        <div className="form_row">
-          <label htmlFor="password" className="input_label">
-            Password
-          </label>
+          <br />
           <input
             type="password"
             password="password"
             id="password"
+            placeholder="Password"
             value={formik.password}
             onChange={formik.handleChange}
             className="input_box"
           />
+          <br />
           {formik.errors.password ? (
             <div style={{ color: "red", fontSize: "12px" }}>
               {formik.errors.password}
             </div>
           ) : null}
-        </div>
-        <br />
-
-        <div>
+          <br />
+          <br />
           <button type="submit" className="submit_btn">
             Sign In
-          </button>{" "}
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          </button>
+          <br />
+          <br />
+
           <a
             href="#"
             onClick={() => {
@@ -96,8 +91,8 @@ const Login = () => {
           >
             Register
           </a>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };
